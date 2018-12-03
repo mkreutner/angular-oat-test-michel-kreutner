@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>User Details</h2>
+<div mat-dialog-content>
+  <mat-card class="user-card">
+    <mat-card-header>
+      <div mat-card-avatar [style.background-image]="userPicture" [style.background-size]="cover">
+      </div>
+      <mat-card-title>{{ userItem?.title | titlecase }} {{ userItem?.firstName | titlecase }} {{ userItem?.lastName | titlecase }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{ userItem?.picture }}" alt="Picture of {{ userItem?.firstName | titlecase }} {{ userItem?.lastName | titlecase }}">
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>Login: {{ userItem?.login }}</mat-list-item>
+        <mat-list-item>Title: {{ userItem?.title }}</mat-list-item>
+        <mat-list-item>FirstName: {{ userItem?.firstName }}</mat-list-item>
+        <mat-list-item>LastName: {{ userItem?.lastName }}</mat-list-item>
+        <mat-list-item>Gender: {{ userItem?.gender }}</mat-list-item>
+        <mat-list-item>Email: {{ userItem?.email }}</mat-list-item>
+        <mat-list-item>Address: {{ userItem?.address }}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="onValidateClick()" cdkFocusInitial>Validate</button>
+</div>

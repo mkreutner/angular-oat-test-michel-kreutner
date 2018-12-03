@@ -1,0 +1,52 @@
+<mat-form-field *ngIf="mergedConfig.withFilter">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Columns definition -->
+    <ng-container *ngFor="let col of mergedConfig.displayedColumns; index as i" matColumnDef="{{ col }}">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ mergedConfig.columnsName[i] || col }} </th>
+      <td mat-cell *matCellDef="let row"> {{ row[col] }}</td>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container *ngIf="mergedConfig.withActions" matColumnDef="Actions">
+      <!-- Customize header / can add global action -->
+      <ng-container *ngIf="mergedConfig.withHeaderAction">
+        <th mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button
+                  matTooltip="{{ mergedConfig.headerAction.tooltip }}"
+                  [disabled]="mergedConfig.headerAction.disabled"
+                  color="mergedConfig.headerAction.color" (click)="mergedConfig.headerAction.action()">
+            <mat-icon>{{ mergedConfig.headerAction.icon }}</mat-icon>
+          </button>
+        </th>
+      </ng-container>
+      <ng-container *ngIf="!mergedConfig.withHeaderActions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+      </ng-container>
+      <!-- Customize action by row -->
+      <td mat-cell *matCellDef="let row; let i=index;">
+        <button *ngFor="let action of mergedConfig.actions; index as i"
+                mat-icon-button
+                matTooltip="{{ action.tooltip }}"
+                [disabled]="action.disabled"
+                color="action.color" (click)="action.action(row)">
+          <mat-icon>{{ action.icon }}</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container *ngIf="mergedConfig.withActions">
+      <tr mat-header-row *matHeaderRowDef="mergedConfig.displayedColumnsWithActions; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; let even = even; columns: mergedConfig.displayedColumnsWithActions;" [ngClass]="{gray: even}"></tr>
+    </ng-container>
+    <ng-container *ngIf="!mergedConfig.withActions">
+      <tr mat-header-row *matHeaderRowDef="mergedConfig.displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; let even = even; columns: mergedConfig.displayedColumns;" [ngClass]="{gray: even}"></tr>
+    </ng-container>
+
+  </table>
+  <mat-paginator [pageSize]="mergedConfig.pageSize" [pageSizeOptions]="mergedConfig.pageSizeOptions"></mat-paginator>
+</div>
+

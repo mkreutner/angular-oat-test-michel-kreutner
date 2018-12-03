@@ -1,0 +1,20 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\layout",
+    "\\src\\app\\layout\\users",
+    "\\src\\app\\models",
+    "\\src\\app\\modules",
+    "\\src\\app\\modules\\dialog",
+    "\\src\\app\\modules\\dialog\\user-details",
+    "\\src\\app\\root-store",
+    "\\src\\assets",
+    "\\src\\assets\\images",
+    "\\src\\environments",
+    "\\src\\styles"
+  ],
+  "SelectedNode": "\\README.md",
+  "PreviewInSolutionExplorer": false
+}
